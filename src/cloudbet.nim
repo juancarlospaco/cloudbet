@@ -163,6 +163,24 @@ proc bet*(self: Cloudbet; acceptPriceChange: AcceptPriceChange; currency, eventI
   result = (metod: HttpPost, url: parseUri(cloudbetApiURL & "/v3/bets/place"), headers: self.defaultHeaders(), body: bodi)
 
 
+proc getAccountCurrencies*(self: Cloudbet): tuple[metod: HttpMethod, url: Uri, headers: array[3, (string, string)], body: string] =
+  ## Get a list of all currencies available on the account. Account management handler to show the list of currencies currently active on the account.
+  result = (metod: HttpGet, url: parseUri(static(cloudbetApiURL & "/v1/account/currencies")), headers: self.defaultHeaders(), body: "")
+
+
+proc getAccountInfo*(self: Cloudbet): tuple[metod: HttpMethod, url: Uri, headers: array[3, (string, string)], body: string] =
+  ## Get a all account information. Account management handler to show account specific information.
+  result = (metod: HttpGet, url: parseUri(static(cloudbetApiURL & "/v1/account/info")), headers: self.defaultHeaders(), body: "")
+
+
+proc getAccountBalance*(self: Cloudbet; currency: string): tuple[metod: HttpMethod, url: Uri, headers: array[3, (string, string)], body: string] =
+  ## Get account balance. Account management handler to show the balance for a requested currency.
+  var url = static(cloudbetApiURL & "/v1/account/currencies/")
+  url.add currency
+  url.add "/balance"
+  result = (metod: HttpGet, url: parseUri(url), headers: self.defaultHeaders(), body: "")
+
+
 runnableExamples:
   import std/[httpcore, uri]
   let client: Cloudbet = newCloudbet(apiKey = "YOUR_CLOUDBET_API_KEY")
