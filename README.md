@@ -16,6 +16,19 @@
 - Valid API Key and API Secret, get it for free at https://www.cloudbet.com/en/player/api
 
 
+# Examples
+
+```nim
+import std/[httpcore, uri], cloudbet
+let client: Cloudbet = newCloudbet(apiKey = "YOUR_CLOUDBET_API_KEY")
+let preparedRequest = client.getSports()
+doAssert preparedRequest is tuple[metod: HttpMethod, url: Uri, headers: array[3, (string, string)], body: string]
+# Use "preparedRequest" with HttpClient, JsFecth, JsHttpClient, xmlhttprequest, our your favorite HTTP lib, etc...
+```
+
+KISS design, only uses `httpcore`, `uri`, `macros` from StdLib.
+
+
 # More
 
 - See also https://github.com/juancarlospaco/binance#binance
