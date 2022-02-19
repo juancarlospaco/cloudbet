@@ -233,7 +233,7 @@ proc getBetStatus*(self: Cloudbet; referenceId: string): tuple[metod: HttpMethod
 
 
 proc bet*(self: Cloudbet; acceptPriceChange: AcceptPriceChange; currency: CloudbetCurrency; eventId, marketUrl, referenceId: string; price, stake: float; side: Side): tuple[metod: HttpMethod, url: Uri, headers: array[3, (string, string)], body: string] =
-  ## Place a Bet.
+  ## Place a Bet. Bet endpoint has a rate limit of 1 Request per second.
   var bodi: string = ""
   unrollInternal(bodi, {"acceptPriceChange": $acceptPriceChange, "currency": $currency, "eventId": eventId, "marketUrl": marketUrl, "referenceId": referenceId, "price": $price, "stake": $stake, "side": $side})
   result = (metod: HttpPost, url: parseUri(cloudbetApiURL & "/v3/bets/place"), headers: self.defaultHeaders(), body: bodi)
