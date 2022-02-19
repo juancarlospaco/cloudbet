@@ -38,3 +38,4 @@ KISS design, only uses `httpcore`, `uri`, `macros` from StdLib.
 # Stars
 
 ![](https://starchart.cc/juancarlospaco/cloudbet.svg)
+:star: [@juancarlospaco](https://github.com/juancarlospaco '2022-02-19')	
