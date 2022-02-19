@@ -6,14 +6,92 @@ import std/[httpcore, uri, macros]
 
 
 type
-  Cloudbet* = object  ## Cloudbet client object.
-    apiKey*: string   ## API Key for the Cloudbet API.
+  Cloudbet* = object                 ## Cloudbet client object.
+    apiKey*: string                  ## API Key for the Cloudbet API.
 
-  AcceptPriceChange* {.pure.} = enum
+  AcceptPriceChange* {.pure.} = enum ## Accept price change.
     NONE = "NONE", ALL = "ALL", BETTER = "BETTER"
 
-  Side* {.pure.} = enum
+  Side* {.pure.} = enum              ## Side of the bet.
     BACK = "BACK", LAY = "LAY"
+
+  CloudbetCurrency* {.pure.} = enum  ## Currencies supported by Cloudbet.
+    BCH = "BCH", BTC = "BTC", CAD = "CAD", DAI = "DAI", DASH = "DASH", DOGE = "DOGE", ETH = "ETH", EUR = "EUR", LINK = "LINK", LTC = "LTC", PAX = "PAX", PAXG = "PAXG", PLAY_EUR = "PLAY_EUR", BONUS_EUR = "BONUS_EUR", USD = "USD", USDC = "USDC", USDT = "USDT"
+
+  CloudbetSport* {.pure.} = enum     ## Sports supported by Cloudbet. See https://gist.github.com/kgravenreuth/6703e1e213aecac4d5728f2f699d34e7#file-sports-json
+    american_football = "American Football"
+    archery = "Archery"
+    athletics = "Athletics"
+    aussie_rules = "Aussie Rules"
+    badminton = "Badminton"
+    bandy = "Bandy"
+    baseball = "Baseball"
+    basketball = "Basketball"
+    beach_soccer = "Beach Soccer"
+    beach_volleyball = "Beach Volleyball"
+    bowls = "Bowls"
+    boxing = "Boxing"
+    call_of_duty = "Call of Duty"
+    chess = "Chess"
+    counter_strike = "Counter-Strike"
+    cricket = "Cricket"
+    crossfire = "Crossfire"
+    curling = "Curling"
+    cycling = "Cycling"
+    darts = "Darts"
+    dota_2 = "Dota 2"
+    entertainment = "Entertainment"
+    esport_aoe = "Age of Empires"
+    esport_arena_of_valor = "Arena of Valor"
+    esport_bga = "BGA"
+    esport_brawl_stars = "Brawl Stars"
+    esport_fifa = "FIFA"
+    esport_free_fire = "Free Fire"
+    esport_king_of_glory = "King of Glory"
+    esport_madden = "Madden"
+    esport_nba2k = "NBA2K"
+    esport_valorant = "Valorant"
+    esport_warcraft = "Warcraft"
+    field_hockey = "Field Hockey"
+    floorball = "Floorball"
+    formula_1 = "Formula 1"
+    formula_e = "Formula E"
+    futsal = "Futsal"
+    golf = "Golf"
+    greyhound = "Greyhound"
+    handball = "Handball"
+    hearthstone = "Hearthstone"
+    heroes_of_the_storm = "Heroes of the Storm"
+    horse_racing = "Horse Racing"
+    ice_hockey = "Ice Hockey"
+    kabaddi = "Kabaddi"
+    league_of_legends = "League of Legends"
+    mma = "MMA"
+    motorsport = "Motorsport"
+    olympics = "Olympics"
+    overwatch = "Overwatch"
+    pesapallo = "Pesapallo"
+    politics = "Politics"
+    rainbow_six = "Rainbow Six"
+    rocket_league = "Rocket League"
+    rugby_league = "Rugby League"
+    rugby_union = "Rugby Union"
+    sailing = "Sailing"
+    snooker = "Snooker"
+    soccer = "Soccer"
+    specials = "Specials"
+    squash = "Squash"
+    starcraft = "Starcraft"
+    street_fighter_v = "Street Fighter V"
+    sumo = "Sumo"
+    swimming = "Swimming"
+    table_tennis = "Table Tennis"
+    tennis = "Tennis"
+    volleyball = "Volleyball"
+    waterpolo = "Waterpolo"
+    wild_rift = "Wild Rift"
+    winter_sports = "Winter Sports"
+    world_lottery = "World Lottery"
 
 
 const cloudbetApiURL: string = "https://sports-api.cloudbet.com/pub"  ## Cloudbet API URL.
@@ -63,10 +141,9 @@ proc getSports*(self: Cloudbet): tuple[metod: HttpMethod, url: Uri, headers: arr
   result = (metod: HttpGet, url: parseUri(static(cloudbetApiURL & "/v2/odds/sports/")), headers: self.defaultHeaders(), body: "")
 
 
-proc getSport*(self: Cloudbet; sport: string): tuple[metod: HttpMethod, url: Uri, headers: array[3, (string, string)], body: string] =
+proc getSport*(self: Cloudbet; sport: CloudbetSport): tuple[metod: HttpMethod, url: Uri, headers: array[3, (string, string)], body: string] =
   ## Get 1 Event, shows all available main markets by default.
-  assert sport.len > 0, "Sport must not be empty string."
-  result = (metod: HttpGet, url: parseUri(static(cloudbetApiURL & "/v2/odds/sports/") & sport), headers: self.defaultHeaders(), body: "")
+  result = (metod: HttpGet, url: parseUri(static(cloudbetApiURL & "/v2/odds/sports/") & $sport), headers: self.defaultHeaders(), body: "")
 
 
 proc getCompetition*(self: Cloudbet; competition: string; fromTo: Slice[int]; markets: seq[string]; limit = 50.Positive): tuple[metod: HttpMethod, url: Uri, headers: array[3, (string, string)], body: string] =
@@ -102,12 +179,11 @@ proc getCompetition*(self: Cloudbet; competition: string; limit = 50.Positive): 
   result = (metod: HttpGet, url: parseUri(url), headers: self.defaultHeaders(), body: "")
 
 
-proc getFixtures*(self: Cloudbet; sport: string; year: 2000..int.high, month: 1..12; day: 1..31; limit = 50.Positive): tuple[metod: HttpMethod, url: Uri, headers: array[3, (string, string)], body: string] =
+proc getFixtures*(self: Cloudbet; sport: CloudbetSport; year: 2000..int.high, month: 1..12; day: 1..31; limit = 50.Positive): tuple[metod: HttpMethod, url: Uri, headers: array[3, (string, string)], body: string] =
   ## Get fixtures (i.e. sporting events without markets or metadata) for a given sport on a given date.
   ## Shows live and upcoming fixtures of a given sport for a given date. Note that a "day" counts as 00:00 UTC to 23:59 UTC on the requested date.
-  assert sport.len > 0, "Sport must not be empty string."
   var url = static(cloudbetApiURL & "/v2/odds/fixtures")
-  unrollEncodeQuery(url, {"sport": sport, "limit": $limit})
+  unrollEncodeQuery(url, {"sport": $sport, "limit": $limit})
   url.add "&date="
   url.addInt year
   url.add '-'
@@ -156,10 +232,10 @@ proc getBetStatus*(self: Cloudbet; referenceId: string): tuple[metod: HttpMethod
   result = (metod: HttpGet, url: parseUri(url), headers: self.defaultHeaders(), body: "")
 
 
-proc bet*(self: Cloudbet; acceptPriceChange: AcceptPriceChange; currency, eventId, marketUrl, referenceId: string; price, stake: float; side: Side): tuple[metod: HttpMethod, url: Uri, headers: array[3, (string, string)], body: string] =
+proc bet*(self: Cloudbet; acceptPriceChange: AcceptPriceChange; currency: CloudbetCurrency; eventId, marketUrl, referenceId: string; price, stake: float; side: Side): tuple[metod: HttpMethod, url: Uri, headers: array[3, (string, string)], body: string] =
   ## Place a Bet.
   var bodi: string = ""
-  unrollInternal(bodi, {"acceptPriceChange": $acceptPriceChange, "currency": currency, "eventId": eventId, "marketUrl": marketUrl, "referenceId": referenceId, "price": $price, "stake": $stake, "side": $side})
+  unrollInternal(bodi, {"acceptPriceChange": $acceptPriceChange, "currency": $currency, "eventId": eventId, "marketUrl": marketUrl, "referenceId": referenceId, "price": $price, "stake": $stake, "side": $side})
   result = (metod: HttpPost, url: parseUri(cloudbetApiURL & "/v3/bets/place"), headers: self.defaultHeaders(), body: bodi)
 
 
@@ -173,10 +249,10 @@ proc getAccountInfo*(self: Cloudbet): tuple[metod: HttpMethod, url: Uri, headers
   result = (metod: HttpGet, url: parseUri(static(cloudbetApiURL & "/v1/account/info")), headers: self.defaultHeaders(), body: "")
 
 
-proc getAccountBalance*(self: Cloudbet; currency: string): tuple[metod: HttpMethod, url: Uri, headers: array[3, (string, string)], body: string] =
+proc getAccountBalance*(self: Cloudbet; currency: CloudbetCurrency): tuple[metod: HttpMethod, url: Uri, headers: array[3, (string, string)], body: string] =
   ## Get account balance. Account management handler to show the balance for a requested currency.
   var url = static(cloudbetApiURL & "/v1/account/currencies/")
-  url.add currency
+  url.add $currency
   url.add "/balance"
   result = (metod: HttpGet, url: parseUri(url), headers: self.defaultHeaders(), body: "")
 
