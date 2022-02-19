@@ -26,7 +26,7 @@ doAssert preparedRequest is tuple[metod: HttpMethod, url: Uri, headers: array[3,
 # Use "preparedRequest" with HttpClient, JsFetch, JsHttpClient, xmlhttprequest, or your favorite HTTP lib, etc...
 ```
 
-KISS design, only uses `httpcore`, `uri`, `macros` from StdLib.
+KISS design, only uses `httpcore`, `uri`, `macros` from StdLib, 0 Dependencies.
 
 
 # More
