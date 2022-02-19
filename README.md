@@ -1,6 +1,6 @@
 # Cloudbet Virtual Crypto Casino API Client
 
-![](cloudbet.jpg)
+![](https://raw.githubusercontent.com/juancarlospaco/cloudbet/nim/cloudbet.jpg)
 
 ![](https://github.com/juancarlospaco/cloudbet/actions/workflows/build.yml/badge.svg)
 ![](https://img.shields.io/github/languages/top/juancarlospaco/cloudbet?style=for-the-badge)
