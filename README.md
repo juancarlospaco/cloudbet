@@ -13,6 +13,7 @@
 
 # Requisites
 
+- Cloudbet account, get it for free at https://www.cloudbet.com/en/auth/sign-up
 - Valid API Key and API Secret, get it for free at https://www.cloudbet.com/en/player/api
 
 
@@ -38,6 +39,14 @@ From Cloudbet API Docs:
 > your account will be flagged for abusive behaviour.
 > You may get blocked for up to 7 days for integrity checks.
 > Bet endpoint has a rate limit of 1 Request per second.
+
+
+# More about Cloudbet
+
+- https://www.cloudbet.com/en/blog/posts/sports-betting-api-tutorial-with-golang
+- https://github.com/Cloudbet
+- https://gist.github.com/kgravenreuth/6703e1e213aecac4d5728f2f699d34e7
+- https://github.com/Cloudbet/docs/discussions
 
 
 # More
