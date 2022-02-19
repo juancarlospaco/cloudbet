@@ -29,6 +29,17 @@ doAssert preparedRequest is tuple[metod: HttpMethod, url: Uri, headers: array[3,
 KISS design, only uses `httpcore`, `uri`, `macros` from StdLib, 0 Dependencies.
 
 
+# Limits
+
+From Cloudbet API Docs:
+
+> When using the API be considerate.
+> If the bet rejection rate on the betting API is too high (>75% on your last 100 bets),
+> your account will be flagged for abusive behaviour.
+> You may get blocked for up to 7 days for integrity checks.
+> Bet endpoint has a rate limit of 1 Request per second.
+
+
 # More
 
 - See also https://github.com/juancarlospaco/binance#binance
