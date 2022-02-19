@@ -108,6 +108,43 @@ window.addEventListener('DOMContentLoaded', main);
   <li><a class="reference" href="#Cloudbet"
     title="Cloudbet = object
   apiKey*: string            ## API Key for the Cloudbet API.">Cloudbet</a></li>
+  <li><a class="reference" href="#CloudbetCurrency"
+    title="CloudbetCurrency {.pure.} = enum
+  BCH = &quot;BCH&quot;, BTC = &quot;BTC&quot;, CAD = &quot;CAD&quot;, DAI = &quot;DAI&quot;, DASH = &quot;DASH&quot;,
+  DOGE = &quot;DOGE&quot;, ETH = &quot;ETH&quot;, EUR = &quot;EUR&quot;, LINK = &quot;LINK&quot;, LTC = &quot;LTC&quot;,
+  PAX = &quot;PAX&quot;, PAXG = &quot;PAXG&quot;, PLAY_EUR = &quot;PLAY_EUR&quot;, BONUS_EUR = &quot;BONUS_EUR&quot;,
+  USD = &quot;USD&quot;, USDC = &quot;USDC&quot;, USDT = &quot;USDT&quot;">CloudbetCurrency</a></li>
+  <li><a class="reference" href="#CloudbetSport"
+    title="CloudbetSport {.pure.} = enum
+  american_football = &quot;American Football&quot;, archery = &quot;Archery&quot;,
+  athletics = &quot;Athletics&quot;, aussie_rules = &quot;Aussie Rules&quot;,
+  badminton = &quot;Badminton&quot;, bandy = &quot;Bandy&quot;, baseball = &quot;Baseball&quot;,
+  basketball = &quot;Basketball&quot;, beach_soccer = &quot;Beach Soccer&quot;,
+  beach_volleyball = &quot;Beach Volleyball&quot;, bowls = &quot;Bowls&quot;, boxing = &quot;Boxing&quot;,
+  call_of_duty = &quot;Call of Duty&quot;, chess = &quot;Chess&quot;,
+  counter_strike = &quot;Counter-Strike&quot;, cricket = &quot;Cricket&quot;,
+  crossfire = &quot;Crossfire&quot;, curling = &quot;Curling&quot;, cycling = &quot;Cycling&quot;,
+  darts = &quot;Darts&quot;, dota_2 = &quot;Dota 2&quot;, entertainment = &quot;Entertainment&quot;,
+  esport_aoe = &quot;Age of Empires&quot;, esport_arena_of_valor = &quot;Arena of Valor&quot;,
+  esport_bga = &quot;BGA&quot;, esport_brawl_stars = &quot;Brawl Stars&quot;, esport_fifa = &quot;FIFA&quot;,
+  esport_free_fire = &quot;Free Fire&quot;, esport_king_of_glory = &quot;King of Glory&quot;,
+  esport_madden = &quot;Madden&quot;, esport_nba2k = &quot;NBA2K&quot;,
+  esport_valorant = &quot;Valorant&quot;, esport_warcraft = &quot;Warcraft&quot;,
+  field_hockey = &quot;Field Hockey&quot;, floorball = &quot;Floorball&quot;,
+  formula_1 = &quot;Formula 1&quot;, formula_e = &quot;Formula E&quot;, futsal = &quot;Futsal&quot;,
+  golf = &quot;Golf&quot;, greyhound = &quot;Greyhound&quot;, handball = &quot;Handball&quot;,
+  hearthstone = &quot;Hearthstone&quot;, heroes_of_the_storm = &quot;Heroes of the Storm&quot;,
+  horse_racing = &quot;Horse Racing&quot;, ice_hockey = &quot;Ice Hockey&quot;, kabaddi = &quot;Kabaddi&quot;,
+  league_of_legends = &quot;League of Legends&quot;, mma = &quot;MMA&quot;,
+  motorsport = &quot;Motorsport&quot;, olympics = &quot;Olympics&quot;, overwatch = &quot;Overwatch&quot;,
+  pesapallo = &quot;Pesapallo&quot;, politics = &quot;Politics&quot;, rainbow_six = &quot;Rainbow Six&quot;,
+  rocket_league = &quot;Rocket League&quot;, rugby_league = &quot;Rugby League&quot;,
+  rugby_union = &quot;Rugby Union&quot;, sailing = &quot;Sailing&quot;, snooker = &quot;Snooker&quot;,
+  soccer = &quot;Soccer&quot;, specials = &quot;Specials&quot;, squash = &quot;Squash&quot;,
+  starcraft = &quot;Starcraft&quot;, street_fighter_v = &quot;Street Fighter V&quot;, sumo = &quot;Sumo&quot;,
+  swimming = &quot;Swimming&quot;, table_tennis = &quot;Table Tennis&quot;, tennis = &quot;Tennis&quot;,
+  volleyball = &quot;Volleyball&quot;, waterpolo = &quot;Waterpolo&quot;, wild_rift = &quot;Wild Rift&quot;,
+  winter_sports = &quot;Winter Sports&quot;, world_lottery = &quot;World Lottery&quot;">CloudbetSport</a></li>
   <li><a class="reference" href="#Side"
     title="Side {.pure.} = enum
   BACK = &quot;BACK&quot;, LAY = &quot;LAY&quot;">Side</a></li>
@@ -117,7 +154,43 @@ window.addEventListener('DOMContentLoaded', main);
 <li>
   <a class="reference reference-toplevel" href="#12" id="62">Procs</a>
   <ul class="simple simple-toc-section">
-      <ul class="simple nested-toc-section">getBetHistory
+      <ul class="simple nested-toc-section">bet
+      <li><a class="reference" href="#bet%2CCloudbet%2CAcceptPriceChange%2CCloudbetCurrency%2Cstring%2Cstring%2Cstring%2Cfloat%2Cfloat%2CSide"
+    title="bet(self: Cloudbet; acceptPriceChange: AcceptPriceChange;
+    currency: CloudbetCurrency; eventId, marketUrl, referenceId: string;
+    price, stake: float; side: Side): tuple[metod: HttpMethod, url: Uri,
+    headers: array[3, (string, string)], body: string]">bet(self: Cloudbet; acceptPriceChange: AcceptPriceChange;
+    currency: CloudbetCurrency; eventId, marketUrl, referenceId: string;
+    price, stake: float; side: Side): tuple[metod: HttpMethod, url: Uri,
+    headers: array[3, (string, string)], body: string]</a></li>
+
+  </ul>
+  <ul class="simple nested-toc-section">getAccountBalance
+      <li><a class="reference" href="#getAccountBalance%2CCloudbet%2CCloudbetCurrency"
+    title="getAccountBalance(self: Cloudbet; currency: CloudbetCurrency): tuple[
+    metod: HttpMethod, url: Uri, headers: array[3, (string, string)],
+    body: string]">getAccountBalance(self: Cloudbet; currency: CloudbetCurrency): tuple[
+    metod: HttpMethod, url: Uri, headers: array[3, (string, string)],
+    body: string]</a></li>
+
+  </ul>
+  <ul class="simple nested-toc-section">getAccountCurrencies
+      <li><a class="reference" href="#getAccountCurrencies%2CCloudbet"
+    title="getAccountCurrencies(self: Cloudbet): tuple[metod: HttpMethod, url: Uri,
+    headers: array[3, (string, string)], body: string]">getAccountCurrencies(self: Cloudbet): tuple[metod: HttpMethod, url: Uri,
+    headers: array[3, (string, string)], body: string]</a></li>
+
+  </ul>
+  <ul class="simple nested-toc-section">getAccountInfo
+      <li><a class="reference" href="#getAccountInfo%2CCloudbet"
+    title="getAccountInfo(self: Cloudbet): tuple[metod: HttpMethod, url: Uri,
+                                      headers: array[3, (string, string)],
+                                      body: string]">getAccountInfo(self: Cloudbet): tuple[metod: HttpMethod, url: Uri,
+                                      headers: array[3, (string, string)],
+                                      body: string]</a></li>
+
+  </ul>
+  <ul class="simple nested-toc-section">getBetHistory
       <li><a class="reference" href="#getBetHistory%2CCloudbet%2Cint"
     title="getBetHistory(self: Cloudbet; limit: 1 .. 20 = 20; offset = 0.Natural): tuple[
     metod: HttpMethod, url: Uri, headers: array[3, (string, string)],
@@ -168,21 +241,21 @@ window.addEventListener('DOMContentLoaded', main);
 
   </ul>
   <ul class="simple nested-toc-section">getFixtures
-      <li><a class="reference" href="#getFixtures%2CCloudbet%2Cstring%2C%2C%2C"
-    title="getFixtures(self: Cloudbet; sport: string; year: 2000 .. int.high;
+      <li><a class="reference" href="#getFixtures%2CCloudbet%2CCloudbetSport%2C%2C%2C"
+    title="getFixtures(self: Cloudbet; sport: CloudbetSport; year: 2000 .. int.high;
             month: 1 .. 12; day: 1 .. 31; limit = 50.Positive): tuple[
     metod: HttpMethod, url: Uri, headers: array[3, (string, string)],
-    body: string]">getFixtures(self: Cloudbet; sport: string; year: 2000 .. int.high;
+    body: string]">getFixtures(self: Cloudbet; sport: CloudbetSport; year: 2000 .. int.high;
             month: 1 .. 12; day: 1 .. 31; limit = 50.Positive): tuple[
     metod: HttpMethod, url: Uri, headers: array[3, (string, string)],
     body: string]</a></li>
 
   </ul>
   <ul class="simple nested-toc-section">getSport
-      <li><a class="reference" href="#getSport%2CCloudbet%2Cstring"
-    title="getSport(self: Cloudbet; sport: string): tuple[metod: HttpMethod, url: Uri,
-    headers: array[3, (string, string)], body: string]">getSport(self: Cloudbet; sport: string): tuple[metod: HttpMethod, url: Uri,
-    headers: array[3, (string, string)], body: string]</a></li>
+      <li><a class="reference" href="#getSport%2CCloudbet%2CCloudbetSport"
+    title="getSport(self: Cloudbet; sport: CloudbetSport): tuple[metod: HttpMethod,
+    url: Uri, headers: array[3, (string, string)], body: string]">getSport(self: Cloudbet; sport: CloudbetSport): tuple[metod: HttpMethod,
+    url: Uri, headers: array[3, (string, string)], body: string]</a></li>
 
   </ul>
   <ul class="simple nested-toc-section">getSports
@@ -206,17 +279,6 @@ window.addEventListener('DOMContentLoaded', main);
                                 body: string]">postLine(self: Cloudbet): tuple[metod: HttpMethod, url: Uri,
                                 headers: array[3, (string, string)],
                                 body: string]</a></li>
-
-  </ul>
-  <ul class="simple nested-toc-section">postPlaceBet
-      <li><a class="reference" href="#postPlaceBet%2CCloudbet%2CAcceptPriceChange%2Cstring%2Cstring%2Cstring%2Cstring%2Cfloat%2Cfloat%2CSide"
-    title="postPlaceBet(self: Cloudbet; acceptPriceChange: AcceptPriceChange;
-             currency, eventId, marketUrl, referenceId: string;
-             price, stake: float; side: Side): tuple[metod: HttpMethod,
-    url: Uri, headers: array[3, (string, string)], body: string]">postPlaceBet(self: Cloudbet; acceptPriceChange: AcceptPriceChange;
-             currency, eventId, marketUrl, referenceId: string;
-             price, stake: float; side: Side): tuple[metod: HttpMethod,
-    url: Uri, headers: array[3, (string, string)], body: string]</a></li>
 
   </ul>
 
@@ -257,7 +319,7 @@ window.addEventListener('DOMContentLoaded', main);
   <span class="Identifier">NONE</span> <span class="Other">=</span> <span class="StringLit">&quot;NONE&quot;</span><span class="Other">,</span> <span class="Identifier">ALL</span> <span class="Other">=</span> <span class="StringLit">&quot;ALL&quot;</span><span class="Other">,</span> <span class="Identifier">BETTER</span> <span class="Other">=</span> <span class="StringLit">&quot;BETTER&quot;</span></pre></dt>
 <dd>
 
-
+Accept price change.
 
 </dd>
 </div>
@@ -271,12 +333,61 @@ Cloudbet client object.
 
 </dd>
 </div>
+<div id="CloudbetCurrency">
+<dt><pre><a href="cloudbet.html#CloudbetCurrency"><span class="Identifier">CloudbetCurrency</span></a> {.<span class="Identifier">pure</span>.} <span class="Other">=</span> <span class="Keyword">enum</span>
+  <span class="Identifier">BCH</span> <span class="Other">=</span> <span class="StringLit">&quot;BCH&quot;</span><span class="Other">,</span> <span class="Identifier">BTC</span> <span class="Other">=</span> <span class="StringLit">&quot;BTC&quot;</span><span class="Other">,</span> <span class="Identifier">CAD</span> <span class="Other">=</span> <span class="StringLit">&quot;CAD&quot;</span><span class="Other">,</span> <span class="Identifier">DAI</span> <span class="Other">=</span> <span class="StringLit">&quot;DAI&quot;</span><span class="Other">,</span> <span class="Identifier">DASH</span> <span class="Other">=</span> <span class="StringLit">&quot;DASH&quot;</span><span class="Other">,</span>
+  <span class="Identifier">DOGE</span> <span class="Other">=</span> <span class="StringLit">&quot;DOGE&quot;</span><span class="Other">,</span> <span class="Identifier">ETH</span> <span class="Other">=</span> <span class="StringLit">&quot;ETH&quot;</span><span class="Other">,</span> <span class="Identifier">EUR</span> <span class="Other">=</span> <span class="StringLit">&quot;EUR&quot;</span><span class="Other">,</span> <span class="Identifier">LINK</span> <span class="Other">=</span> <span class="StringLit">&quot;LINK&quot;</span><span class="Other">,</span> <span class="Identifier">LTC</span> <span class="Other">=</span> <span class="StringLit">&quot;LTC&quot;</span><span class="Other">,</span>
+  <span class="Identifier">PAX</span> <span class="Other">=</span> <span class="StringLit">&quot;PAX&quot;</span><span class="Other">,</span> <span class="Identifier">PAXG</span> <span class="Other">=</span> <span class="StringLit">&quot;PAXG&quot;</span><span class="Other">,</span> <span class="Identifier">PLAY_EUR</span> <span class="Other">=</span> <span class="StringLit">&quot;PLAY_EUR&quot;</span><span class="Other">,</span> <span class="Identifier">BONUS_EUR</span> <span class="Other">=</span> <span class="StringLit">&quot;BONUS_EUR&quot;</span><span class="Other">,</span>
+  <span class="Identifier">USD</span> <span class="Other">=</span> <span class="StringLit">&quot;USD&quot;</span><span class="Other">,</span> <span class="Identifier">USDC</span> <span class="Other">=</span> <span class="StringLit">&quot;USDC&quot;</span><span class="Other">,</span> <span class="Identifier">USDT</span> <span class="Other">=</span> <span class="StringLit">&quot;USDT&quot;</span></pre></dt>
+<dd>
+
+Currencies supported by Cloudbet.
+
+</dd>
+</div>
+<div id="CloudbetSport">
+<dt><pre><a href="cloudbet.html#CloudbetSport"><span class="Identifier">CloudbetSport</span></a> {.<span class="Identifier">pure</span>.} <span class="Other">=</span> <span class="Keyword">enum</span>
+  <span class="Identifier">american_football</span> <span class="Other">=</span> <span class="StringLit">&quot;American Football&quot;</span><span class="Other">,</span> <span class="Identifier">archery</span> <span class="Other">=</span> <span class="StringLit">&quot;Archery&quot;</span><span class="Other">,</span>
+  <span class="Identifier">athletics</span> <span class="Other">=</span> <span class="StringLit">&quot;Athletics&quot;</span><span class="Other">,</span> <span class="Identifier">aussie_rules</span> <span class="Other">=</span> <span class="StringLit">&quot;Aussie Rules&quot;</span><span class="Other">,</span>
+  <span class="Identifier">badminton</span> <span class="Other">=</span> <span class="StringLit">&quot;Badminton&quot;</span><span class="Other">,</span> <span class="Identifier">bandy</span> <span class="Other">=</span> <span class="StringLit">&quot;Bandy&quot;</span><span class="Other">,</span> <span class="Identifier">baseball</span> <span class="Other">=</span> <span class="StringLit">&quot;Baseball&quot;</span><span class="Other">,</span>
+  <span class="Identifier">basketball</span> <span class="Other">=</span> <span class="StringLit">&quot;Basketball&quot;</span><span class="Other">,</span> <span class="Identifier">beach_soccer</span> <span class="Other">=</span> <span class="StringLit">&quot;Beach Soccer&quot;</span><span class="Other">,</span>
+  <span class="Identifier">beach_volleyball</span> <span class="Other">=</span> <span class="StringLit">&quot;Beach Volleyball&quot;</span><span class="Other">,</span> <span class="Identifier">bowls</span> <span class="Other">=</span> <span class="StringLit">&quot;Bowls&quot;</span><span class="Other">,</span> <span class="Identifier">boxing</span> <span class="Other">=</span> <span class="StringLit">&quot;Boxing&quot;</span><span class="Other">,</span>
+  <span class="Identifier">call_of_duty</span> <span class="Other">=</span> <span class="StringLit">&quot;Call of Duty&quot;</span><span class="Other">,</span> <span class="Identifier">chess</span> <span class="Other">=</span> <span class="StringLit">&quot;Chess&quot;</span><span class="Other">,</span>
+  <span class="Identifier">counter_strike</span> <span class="Other">=</span> <span class="StringLit">&quot;Counter-Strike&quot;</span><span class="Other">,</span> <span class="Identifier">cricket</span> <span class="Other">=</span> <span class="StringLit">&quot;Cricket&quot;</span><span class="Other">,</span>
+  <span class="Identifier">crossfire</span> <span class="Other">=</span> <span class="StringLit">&quot;Crossfire&quot;</span><span class="Other">,</span> <span class="Identifier">curling</span> <span class="Other">=</span> <span class="StringLit">&quot;Curling&quot;</span><span class="Other">,</span> <span class="Identifier">cycling</span> <span class="Other">=</span> <span class="StringLit">&quot;Cycling&quot;</span><span class="Other">,</span>
+  <span class="Identifier">darts</span> <span class="Other">=</span> <span class="StringLit">&quot;Darts&quot;</span><span class="Other">,</span> <span class="Identifier">dota_2</span> <span class="Other">=</span> <span class="StringLit">&quot;Dota 2&quot;</span><span class="Other">,</span> <span class="Identifier">entertainment</span> <span class="Other">=</span> <span class="StringLit">&quot;Entertainment&quot;</span><span class="Other">,</span>
+  <span class="Identifier">esport_aoe</span> <span class="Other">=</span> <span class="StringLit">&quot;Age of Empires&quot;</span><span class="Other">,</span> <span class="Identifier">esport_arena_of_valor</span> <span class="Other">=</span> <span class="StringLit">&quot;Arena of Valor&quot;</span><span class="Other">,</span>
+  <span class="Identifier">esport_bga</span> <span class="Other">=</span> <span class="StringLit">&quot;BGA&quot;</span><span class="Other">,</span> <span class="Identifier">esport_brawl_stars</span> <span class="Other">=</span> <span class="StringLit">&quot;Brawl Stars&quot;</span><span class="Other">,</span> <span class="Identifier">esport_fifa</span> <span class="Other">=</span> <span class="StringLit">&quot;FIFA&quot;</span><span class="Other">,</span>
+  <span class="Identifier">esport_free_fire</span> <span class="Other">=</span> <span class="StringLit">&quot;Free Fire&quot;</span><span class="Other">,</span> <span class="Identifier">esport_king_of_glory</span> <span class="Other">=</span> <span class="StringLit">&quot;King of Glory&quot;</span><span class="Other">,</span>
+  <span class="Identifier">esport_madden</span> <span class="Other">=</span> <span class="StringLit">&quot;Madden&quot;</span><span class="Other">,</span> <span class="Identifier">esport_nba2k</span> <span class="Other">=</span> <span class="StringLit">&quot;NBA2K&quot;</span><span class="Other">,</span>
+  <span class="Identifier">esport_valorant</span> <span class="Other">=</span> <span class="StringLit">&quot;Valorant&quot;</span><span class="Other">,</span> <span class="Identifier">esport_warcraft</span> <span class="Other">=</span> <span class="StringLit">&quot;Warcraft&quot;</span><span class="Other">,</span>
+  <span class="Identifier">field_hockey</span> <span class="Other">=</span> <span class="StringLit">&quot;Field Hockey&quot;</span><span class="Other">,</span> <span class="Identifier">floorball</span> <span class="Other">=</span> <span class="StringLit">&quot;Floorball&quot;</span><span class="Other">,</span>
+  <span class="Identifier">formula_1</span> <span class="Other">=</span> <span class="StringLit">&quot;Formula 1&quot;</span><span class="Other">,</span> <span class="Identifier">formula_e</span> <span class="Other">=</span> <span class="StringLit">&quot;Formula E&quot;</span><span class="Other">,</span> <span class="Identifier">futsal</span> <span class="Other">=</span> <span class="StringLit">&quot;Futsal&quot;</span><span class="Other">,</span>
+  <span class="Identifier">golf</span> <span class="Other">=</span> <span class="StringLit">&quot;Golf&quot;</span><span class="Other">,</span> <span class="Identifier">greyhound</span> <span class="Other">=</span> <span class="StringLit">&quot;Greyhound&quot;</span><span class="Other">,</span> <span class="Identifier">handball</span> <span class="Other">=</span> <span class="StringLit">&quot;Handball&quot;</span><span class="Other">,</span>
+  <span class="Identifier">hearthstone</span> <span class="Other">=</span> <span class="StringLit">&quot;Hearthstone&quot;</span><span class="Other">,</span> <span class="Identifier">heroes_of_the_storm</span> <span class="Other">=</span> <span class="StringLit">&quot;Heroes of the Storm&quot;</span><span class="Other">,</span>
+  <span class="Identifier">horse_racing</span> <span class="Other">=</span> <span class="StringLit">&quot;Horse Racing&quot;</span><span class="Other">,</span> <span class="Identifier">ice_hockey</span> <span class="Other">=</span> <span class="StringLit">&quot;Ice Hockey&quot;</span><span class="Other">,</span> <span class="Identifier">kabaddi</span> <span class="Other">=</span> <span class="StringLit">&quot;Kabaddi&quot;</span><span class="Other">,</span>
+  <span class="Identifier">league_of_legends</span> <span class="Other">=</span> <span class="StringLit">&quot;League of Legends&quot;</span><span class="Other">,</span> <span class="Identifier">mma</span> <span class="Other">=</span> <span class="StringLit">&quot;MMA&quot;</span><span class="Other">,</span>
+  <span class="Identifier">motorsport</span> <span class="Other">=</span> <span class="StringLit">&quot;Motorsport&quot;</span><span class="Other">,</span> <span class="Identifier">olympics</span> <span class="Other">=</span> <span class="StringLit">&quot;Olympics&quot;</span><span class="Other">,</span> <span class="Identifier">overwatch</span> <span class="Other">=</span> <span class="StringLit">&quot;Overwatch&quot;</span><span class="Other">,</span>
+  <span class="Identifier">pesapallo</span> <span class="Other">=</span> <span class="StringLit">&quot;Pesapallo&quot;</span><span class="Other">,</span> <span class="Identifier">politics</span> <span class="Other">=</span> <span class="StringLit">&quot;Politics&quot;</span><span class="Other">,</span> <span class="Identifier">rainbow_six</span> <span class="Other">=</span> <span class="StringLit">&quot;Rainbow Six&quot;</span><span class="Other">,</span>
+  <span class="Identifier">rocket_league</span> <span class="Other">=</span> <span class="StringLit">&quot;Rocket League&quot;</span><span class="Other">,</span> <span class="Identifier">rugby_league</span> <span class="Other">=</span> <span class="StringLit">&quot;Rugby League&quot;</span><span class="Other">,</span>
+  <span class="Identifier">rugby_union</span> <span class="Other">=</span> <span class="StringLit">&quot;Rugby Union&quot;</span><span class="Other">,</span> <span class="Identifier">sailing</span> <span class="Other">=</span> <span class="StringLit">&quot;Sailing&quot;</span><span class="Other">,</span> <span class="Identifier">snooker</span> <span class="Other">=</span> <span class="StringLit">&quot;Snooker&quot;</span><span class="Other">,</span>
+  <span class="Identifier">soccer</span> <span class="Other">=</span> <span class="StringLit">&quot;Soccer&quot;</span><span class="Other">,</span> <span class="Identifier">specials</span> <span class="Other">=</span> <span class="StringLit">&quot;Specials&quot;</span><span class="Other">,</span> <span class="Identifier">squash</span> <span class="Other">=</span> <span class="StringLit">&quot;Squash&quot;</span><span class="Other">,</span>
+  <span class="Identifier">starcraft</span> <span class="Other">=</span> <span class="StringLit">&quot;Starcraft&quot;</span><span class="Other">,</span> <span class="Identifier">street_fighter_v</span> <span class="Other">=</span> <span class="StringLit">&quot;Street Fighter V&quot;</span><span class="Other">,</span> <span class="Identifier">sumo</span> <span class="Other">=</span> <span class="StringLit">&quot;Sumo&quot;</span><span class="Other">,</span>
+  <span class="Identifier">swimming</span> <span class="Other">=</span> <span class="StringLit">&quot;Swimming&quot;</span><span class="Other">,</span> <span class="Identifier">table_tennis</span> <span class="Other">=</span> <span class="StringLit">&quot;Table Tennis&quot;</span><span class="Other">,</span> <span class="Identifier">tennis</span> <span class="Other">=</span> <span class="StringLit">&quot;Tennis&quot;</span><span class="Other">,</span>
+  <span class="Identifier">volleyball</span> <span class="Other">=</span> <span class="StringLit">&quot;Volleyball&quot;</span><span class="Other">,</span> <span class="Identifier">waterpolo</span> <span class="Other">=</span> <span class="StringLit">&quot;Waterpolo&quot;</span><span class="Other">,</span> <span class="Identifier">wild_rift</span> <span class="Other">=</span> <span class="StringLit">&quot;Wild Rift&quot;</span><span class="Other">,</span>
+  <span class="Identifier">winter_sports</span> <span class="Other">=</span> <span class="StringLit">&quot;Winter Sports&quot;</span><span class="Other">,</span> <span class="Identifier">world_lottery</span> <span class="Other">=</span> <span class="StringLit">&quot;World Lottery&quot;</span></pre></dt>
+<dd>
+
+Sports supported by Cloudbet. See <a class="reference external" href="https://gist.github.com/kgravenreuth/6703e1e213aecac4d5728f2f699d34e7#file-sports-json">https://gist.github.com/kgravenreuth/6703e1e213aecac4d5728f2f699d34e7#file-sports-json</a>
+
+</dd>
+</div>
 <div id="Side">
 <dt><pre><a href="cloudbet.html#Side"><span class="Identifier">Side</span></a> {.<span class="Identifier">pure</span>.} <span class="Other">=</span> <span class="Keyword">enum</span>
   <span class="Identifier">BACK</span> <span class="Other">=</span> <span class="StringLit">&quot;BACK&quot;</span><span class="Other">,</span> <span class="Identifier">LAY</span> <span class="Other">=</span> <span class="StringLit">&quot;LAY&quot;</span></pre></dt>
 <dd>
 
-
+Side of the bet.
 
 </dd>
 </div>
@@ -285,6 +396,45 @@ Cloudbet client object.
 <div class="section" id="12">
 <h1><a class="toc-backref" href="#12">Procs</a></h1>
 <dl class="item">
+<div id="bet,Cloudbet,AcceptPriceChange,CloudbetCurrency,string,string,string,float,float,Side">
+<dt><pre><span class="Keyword">proc</span> <a href="#bet%2CCloudbet%2CAcceptPriceChange%2CCloudbetCurrency%2Cstring%2Cstring%2Cstring%2Cfloat%2Cfloat%2CSide"><span class="Identifier">bet</span></a><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <a href="cloudbet.html#Cloudbet"><span class="Identifier">Cloudbet</span></a><span class="Other">;</span> <span class="Identifier">acceptPriceChange</span><span class="Other">:</span> <a href="cloudbet.html#AcceptPriceChange"><span class="Identifier">AcceptPriceChange</span></a><span class="Other">;</span>
+         <span class="Identifier">currency</span><span class="Other">:</span> <a href="cloudbet.html#CloudbetCurrency"><span class="Identifier">CloudbetCurrency</span></a><span class="Other">;</span> <span class="Identifier">eventId</span><span class="Other">,</span> <span class="Identifier">marketUrl</span><span class="Other">,</span> <span class="Identifier">referenceId</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span>
+         <span class="Identifier">price</span><span class="Other">,</span> <span class="Identifier">stake</span><span class="Other">:</span> <span class="Identifier">float</span><span class="Other">;</span> <span class="Identifier">side</span><span class="Other">:</span> <a href="cloudbet.html#Side"><span class="Identifier">Side</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Keyword">tuple</span><span class="Other">[</span><span class="Identifier">metod</span><span class="Other">:</span> <span class="Identifier">HttpMethod</span><span class="Other">,</span> <span class="Identifier">url</span><span class="Other">:</span> <span class="Identifier">Uri</span><span class="Other">,</span>
+    <span class="Identifier">headers</span><span class="Other">:</span> <span class="Identifier">array</span><span class="Other">[</span><span class="DecNumber">3</span><span class="Other">,</span> <span class="Other">(</span><span class="Identifier">string</span><span class="Other">,</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">body</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">]</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+<dd>
+
+Place a Bet.
+
+</dd>
+</div>
+<div id="getAccountBalance,Cloudbet,CloudbetCurrency">
+<dt><pre><span class="Keyword">proc</span> <a href="#getAccountBalance%2CCloudbet%2CCloudbetCurrency"><span class="Identifier">getAccountBalance</span></a><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <a href="cloudbet.html#Cloudbet"><span class="Identifier">Cloudbet</span></a><span class="Other">;</span> <span class="Identifier">currency</span><span class="Other">:</span> <a href="cloudbet.html#CloudbetCurrency"><span class="Identifier">CloudbetCurrency</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Keyword">tuple</span><span class="Other">[</span>
+    <span class="Identifier">metod</span><span class="Other">:</span> <span class="Identifier">HttpMethod</span><span class="Other">,</span> <span class="Identifier">url</span><span class="Other">:</span> <span class="Identifier">Uri</span><span class="Other">,</span> <span class="Identifier">headers</span><span class="Other">:</span> <span class="Identifier">array</span><span class="Other">[</span><span class="DecNumber">3</span><span class="Other">,</span> <span class="Other">(</span><span class="Identifier">string</span><span class="Other">,</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">]</span><span class="Other">,</span>
+    <span class="Identifier">body</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">]</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+<dd>
+
+Get account balance. Account management handler to show the balance for a requested currency.
+
+</dd>
+</div>
+<div id="getAccountCurrencies,Cloudbet">
+<dt><pre><span class="Keyword">proc</span> <a href="#getAccountCurrencies%2CCloudbet"><span class="Identifier">getAccountCurrencies</span></a><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <a href="cloudbet.html#Cloudbet"><span class="Identifier">Cloudbet</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Keyword">tuple</span><span class="Other">[</span><span class="Identifier">metod</span><span class="Other">:</span> <span class="Identifier">HttpMethod</span><span class="Other">,</span> <span class="Identifier">url</span><span class="Other">:</span> <span class="Identifier">Uri</span><span class="Other">,</span>
+    <span class="Identifier">headers</span><span class="Other">:</span> <span class="Identifier">array</span><span class="Other">[</span><span class="DecNumber">3</span><span class="Other">,</span> <span class="Other">(</span><span class="Identifier">string</span><span class="Other">,</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">body</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">]</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+<dd>
+
+Get a list of all currencies available on the account. Account management handler to show the list of currencies currently active on the account.
+
+</dd>
+</div>
+<div id="getAccountInfo,Cloudbet">
+<dt><pre><span class="Keyword">proc</span> <a href="#getAccountInfo%2CCloudbet"><span class="Identifier">getAccountInfo</span></a><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <a href="cloudbet.html#Cloudbet"><span class="Identifier">Cloudbet</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Keyword">tuple</span><span class="Other">[</span><span class="Identifier">metod</span><span class="Other">:</span> <span class="Identifier">HttpMethod</span><span class="Other">,</span> <span class="Identifier">url</span><span class="Other">:</span> <span class="Identifier">Uri</span><span class="Other">,</span>
+    <span class="Identifier">headers</span><span class="Other">:</span> <span class="Identifier">array</span><span class="Other">[</span><span class="DecNumber">3</span><span class="Other">,</span> <span class="Other">(</span><span class="Identifier">string</span><span class="Other">,</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">body</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">]</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+<dd>
+
+Get a all account information. Account management handler to show account specific information.
+
+</dd>
+</div>
 <div id="getBetHistory,Cloudbet,int">
 <dt><pre><span class="Keyword">proc</span> <a href="#getBetHistory%2CCloudbet%2Cint"><span class="Identifier">getBetHistory</span></a><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <a href="cloudbet.html#Cloudbet"><span class="Identifier">Cloudbet</span></a><span class="Other">;</span> <span class="Identifier">limit</span><span class="Other">:</span> <span class="DecNumber">1</span> <span class="Operator">..</span> <span class="DecNumber">20</span> <span class="Other">=</span> <span class="DecNumber">20</span><span class="Other">;</span> <span class="Identifier">offset</span> <span class="Other">=</span> <span class="DecNumber">0</span><span class="Other">.</span><span class="Identifier">Natural</span><span class="Other">)</span><span class="Other">:</span> <span class="Keyword">tuple</span><span class="Other">[</span>
     <span class="Identifier">metod</span><span class="Other">:</span> <span class="Identifier">HttpMethod</span><span class="Other">,</span> <span class="Identifier">url</span><span class="Other">:</span> <span class="Identifier">Uri</span><span class="Other">,</span> <span class="Identifier">headers</span><span class="Other">:</span> <span class="Identifier">array</span><span class="Other">[</span><span class="DecNumber">3</span><span class="Other">,</span> <span class="Other">(</span><span class="Identifier">string</span><span class="Other">,</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">]</span><span class="Other">,</span>
@@ -355,8 +505,8 @@ Get 1 Event, shows all available main markets by default.
 
 </dd>
 </div>
-<div id="getFixtures,Cloudbet,string,,,">
-<dt><pre><span class="Keyword">proc</span> <a href="#getFixtures%2CCloudbet%2Cstring%2C%2C%2C"><span class="Identifier">getFixtures</span></a><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <a href="cloudbet.html#Cloudbet"><span class="Identifier">Cloudbet</span></a><span class="Other">;</span> <span class="Identifier">sport</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">year</span><span class="Other">:</span> <span class="DecNumber">2000</span> <span class="Operator">..</span> <span class="Identifier">int</span><span class="Other">.</span><span class="Identifier">high</span><span class="Other">;</span>
+<div id="getFixtures,Cloudbet,CloudbetSport,,,">
+<dt><pre><span class="Keyword">proc</span> <a href="#getFixtures%2CCloudbet%2CCloudbetSport%2C%2C%2C"><span class="Identifier">getFixtures</span></a><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <a href="cloudbet.html#Cloudbet"><span class="Identifier">Cloudbet</span></a><span class="Other">;</span> <span class="Identifier">sport</span><span class="Other">:</span> <a href="cloudbet.html#CloudbetSport"><span class="Identifier">CloudbetSport</span></a><span class="Other">;</span> <span class="Identifier">year</span><span class="Other">:</span> <span class="DecNumber">2000</span> <span class="Operator">..</span> <span class="Identifier">int</span><span class="Other">.</span><span class="Identifier">high</span><span class="Other">;</span>
                  <span class="Identifier">month</span><span class="Other">:</span> <span class="DecNumber">1</span> <span class="Operator">..</span> <span class="DecNumber">12</span><span class="Other">;</span> <span class="Identifier">day</span><span class="Other">:</span> <span class="DecNumber">1</span> <span class="Operator">..</span> <span class="DecNumber">31</span><span class="Other">;</span> <span class="Identifier">limit</span> <span class="Other">=</span> <span class="DecNumber">50</span><span class="Other">.</span><span class="Identifier">Positive</span><span class="Other">)</span><span class="Other">:</span> <span class="Keyword">tuple</span><span class="Other">[</span>
     <span class="Identifier">metod</span><span class="Other">:</span> <span class="Identifier">HttpMethod</span><span class="Other">,</span> <span class="Identifier">url</span><span class="Other">:</span> <span class="Identifier">Uri</span><span class="Other">,</span> <span class="Identifier">headers</span><span class="Other">:</span> <span class="Identifier">array</span><span class="Other">[</span><span class="DecNumber">3</span><span class="Other">,</span> <span class="Other">(</span><span class="Identifier">string</span><span class="Other">,</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">]</span><span class="Other">,</span>
     <span class="Identifier">body</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">]</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
@@ -366,9 +516,10 @@ Get fixtures (i.e. sporting events without markets or metadata) for a given spor
 
 </dd>
 </div>
-<div id="getSport,Cloudbet,string">
-<dt><pre><span class="Keyword">proc</span> <a href="#getSport%2CCloudbet%2Cstring"><span class="Identifier">getSport</span></a><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <a href="cloudbet.html#Cloudbet"><span class="Identifier">Cloudbet</span></a><span class="Other">;</span> <span class="Identifier">sport</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">:</span> <span class="Keyword">tuple</span><span class="Other">[</span><span class="Identifier">metod</span><span class="Other">:</span> <span class="Identifier">HttpMethod</span><span class="Other">,</span> <span class="Identifier">url</span><span class="Other">:</span> <span class="Identifier">Uri</span><span class="Other">,</span>
-    <span class="Identifier">headers</span><span class="Other">:</span> <span class="Identifier">array</span><span class="Other">[</span><span class="DecNumber">3</span><span class="Other">,</span> <span class="Other">(</span><span class="Identifier">string</span><span class="Other">,</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">body</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">]</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+<div id="getSport,Cloudbet,CloudbetSport">
+<dt><pre><span class="Keyword">proc</span> <a href="#getSport%2CCloudbet%2CCloudbetSport"><span class="Identifier">getSport</span></a><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <a href="cloudbet.html#Cloudbet"><span class="Identifier">Cloudbet</span></a><span class="Other">;</span> <span class="Identifier">sport</span><span class="Other">:</span> <a href="cloudbet.html#CloudbetSport"><span class="Identifier">CloudbetSport</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Keyword">tuple</span><span class="Other">[</span><span class="Identifier">metod</span><span class="Other">:</span> <span class="Identifier">HttpMethod</span><span class="Other">,</span>
+    <span class="Identifier">url</span><span class="Other">:</span> <span class="Identifier">Uri</span><span class="Other">,</span> <span class="Identifier">headers</span><span class="Other">:</span> <span class="Identifier">array</span><span class="Other">[</span><span class="DecNumber">3</span><span class="Other">,</span> <span class="Other">(</span><span class="Identifier">string</span><span class="Other">,</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">body</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">]</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span>
+    <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
 Get 1 Event, shows all available main markets by default.
@@ -403,18 +554,6 @@ Obtain latest odds for a selection based on market key, outcome and params.
 
 </dd>
 </div>
-<div id="postPlaceBet,Cloudbet,AcceptPriceChange,string,string,string,string,float,float,Side">
-<dt><pre><span class="Keyword">proc</span> <a href="#postPlaceBet%2CCloudbet%2CAcceptPriceChange%2Cstring%2Cstring%2Cstring%2Cstring%2Cfloat%2Cfloat%2CSide"><span class="Identifier">postPlaceBet</span></a><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <a href="cloudbet.html#Cloudbet"><span class="Identifier">Cloudbet</span></a><span class="Other">;</span> <span class="Identifier">acceptPriceChange</span><span class="Other">:</span> <a href="cloudbet.html#AcceptPriceChange"><span class="Identifier">AcceptPriceChange</span></a><span class="Other">;</span>
-                  <span class="Identifier">currency</span><span class="Other">,</span> <span class="Identifier">eventId</span><span class="Other">,</span> <span class="Identifier">marketUrl</span><span class="Other">,</span> <span class="Identifier">referenceId</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span>
-                  <span class="Identifier">price</span><span class="Other">,</span> <span class="Identifier">stake</span><span class="Other">:</span> <span class="Identifier">float</span><span class="Other">;</span> <span class="Identifier">side</span><span class="Other">:</span> <a href="cloudbet.html#Side"><span class="Identifier">Side</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Keyword">tuple</span><span class="Other">[</span><span class="Identifier">metod</span><span class="Other">:</span> <span class="Identifier">HttpMethod</span><span class="Other">,</span>
-    <span class="Identifier">url</span><span class="Other">:</span> <span class="Identifier">Uri</span><span class="Other">,</span> <span class="Identifier">headers</span><span class="Other">:</span> <span class="Identifier">array</span><span class="Other">[</span><span class="DecNumber">3</span><span class="Other">,</span> <span class="Other">(</span><span class="Identifier">string</span><span class="Other">,</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">body</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">]</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span>
-    <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
-<dd>
-
-Place a Bet.
-
-</dd>
-</div>
 
 </dl></div>
 <div class="section" id="18">
@@ -438,7 +577,7 @@ Generate default HTTP Headers, the API uses only <tt class="docutils literal"><s
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2022-02-19 18:54:00 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2022-02-19 19:37:00 UTC</small>
       </div>
     </div>
   </div>
