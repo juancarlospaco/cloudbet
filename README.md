@@ -59,3 +59,4 @@ From Cloudbet API Docs:
 
 ![](https://starchart.cc/juancarlospaco/cloudbet.svg)
 :star: [@juancarlospaco](https://github.com/juancarlospaco '2022-02-19')
+:star: [@luisacosta828](https://github.com/luisacosta828 '2022-02-20')	
