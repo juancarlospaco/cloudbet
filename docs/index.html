@@ -285,6 +285,23 @@ window.addEventListener('DOMContentLoaded', main);
   </ul>
 </li>
 <li>
+  <a class="reference reference-toplevel" href="#17" id="67">Macros</a>
+  <ul class="simple simple-toc-section">
+      <ul class="simple nested-toc-section">unrollEncodeQuery
+      <li><a class="reference" href="#unrollEncodeQuery.m%2Cstring%2CopenArray%5B%5D%2Ctyped%2Cstatic%5Bbool%5D"
+    title="unrollEncodeQuery(target: var string; args: openArray[(string, auto)];
+                  escape: typed = nil; quote: static[bool] = false)">unrollEncodeQuery(target: var string; args: openArray[(string, auto)];
+                  escape: typed = nil; quote: static[bool] = false)</a></li>
+  <li><a class="reference" href="#unrollEncodeQuery.m%2Cstring%2CopenArray%5B%5D%2Ctyped%2Cstatic%5Bbool%5D_2"
+    title="unrollEncodeQuery(target: var string; args: openArray[(string, SomeInteger)];
+                  escape: typed = nil; quote: static[bool] = false)">unrollEncodeQuery(target: var string; args: openArray[(string, SomeInteger)];
+                  escape: typed = nil; quote: static[bool] = false)</a></li>
+
+  </ul>
+
+  </ul>
+</li>
+<li>
   <a class="reference reference-toplevel" href="#18" id="68">Templates</a>
   <ul class="simple simple-toc-section">
       <ul class="simple nested-toc-section">defaultHeaders
@@ -403,7 +420,7 @@ Side of the bet.
     <span class="Identifier">headers</span><span class="Other">:</span> <span class="Identifier">array</span><span class="Other">[</span><span class="DecNumber">3</span><span class="Other">,</span> <span class="Other">(</span><span class="Identifier">string</span><span class="Other">,</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">body</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">]</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
-Place a Bet.
+Place a Bet. Bet endpoint has a rate limit of 1 Request per second.
 
 </dd>
 </div>
@@ -556,6 +573,30 @@ Obtain latest odds for a selection based on market key, outcome and params.
 </div>
 
 </dl></div>
+<div class="section" id="17">
+<h1><a class="toc-backref" href="#17">Macros</a></h1>
+<dl class="item">
+<div id="unrollEncodeQuery.m,string,openArray[],typed,static[bool]">
+<dt><pre><span class="Keyword">macro</span> <a href="#unrollEncodeQuery.m%2Cstring%2CopenArray%5B%5D%2Ctyped%2Cstatic%5Bbool%5D"><span class="Identifier">unrollEncodeQuery</span></a><span class="Other">(</span><span class="Identifier">target</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">args</span><span class="Other">:</span> <span class="Identifier">openArray</span><span class="Other">[</span><span class="Other">(</span><span class="Identifier">string</span><span class="Other">,</span> <span class="Identifier">auto</span><span class="Other">)</span><span class="Other">]</span><span class="Other">;</span>
+                        <span class="Identifier">escape</span><span class="Other">:</span> <span class="Identifier">typed</span> <span class="Other">=</span> <span class="Keyword">nil</span><span class="Other">;</span> <span class="Identifier">quote</span><span class="Other">:</span> <span class="Identifier">static</span><span class="Other">[</span><span class="Identifier">bool</span><span class="Other">]</span> <span class="Other">=</span> <span class="Identifier">false</span><span class="Other">)</span></pre></dt>
+<dd>
+
+
+
+</dd>
+</div>
+<div id="unrollEncodeQuery.m,string,openArray[],typed,static[bool]_2">
+<dt><pre><span class="Keyword">macro</span> <a href="#unrollEncodeQuery.m%2Cstring%2CopenArray%5B%5D%2Ctyped%2Cstatic%5Bbool%5D_2"><span class="Identifier">unrollEncodeQuery</span></a><span class="Other">(</span><span class="Identifier">target</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">string</span><span class="Other">;</span>
+                        <span class="Identifier">args</span><span class="Other">:</span> <span class="Identifier">openArray</span><span class="Other">[</span><span class="Other">(</span><span class="Identifier">string</span><span class="Other">,</span> <span class="Identifier">SomeInteger</span><span class="Other">)</span><span class="Other">]</span><span class="Other">;</span>
+                        <span class="Identifier">escape</span><span class="Other">:</span> <span class="Identifier">typed</span> <span class="Other">=</span> <span class="Keyword">nil</span><span class="Other">;</span> <span class="Identifier">quote</span><span class="Other">:</span> <span class="Identifier">static</span><span class="Other">[</span><span class="Identifier">bool</span><span class="Other">]</span> <span class="Other">=</span> <span class="Identifier">false</span><span class="Other">)</span></pre></dt>
+<dd>
+
+
+
+</dd>
+</div>
+
+</dl></div>
 <div class="section" id="18">
 <h1><a class="toc-backref" href="#18">Templates</a></h1>
 <dl class="item">
@@ -577,7 +618,7 @@ Generate default HTTP Headers, the API uses only <tt class="docutils literal"><s
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2022-02-19 19:37:00 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2022-02-21 00:56:49 UTC</small>
       </div>
     </div>
   </div>
