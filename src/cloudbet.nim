@@ -97,7 +97,7 @@ type
 const cloudbetApiURL: string = "https://sports-api.cloudbet.com/pub"  ## Cloudbet API URL.
 
 
-macro unrollEncodeQuery*(target: var string; args: openArray[(string, auto)]; escape: typed = nil; quote: static[bool] = false) =
+macro unrollEncodeQuery*(target: var string; args: openArray[(string, auto)]; escape: typed = nil) =
   doAssert args.len > 0, "Iterable must not be empty, because theres nothing to unroll"
   result = newStmtList()
   for i, item in args:
@@ -106,14 +106,12 @@ macro unrollEncodeQuery*(target: var string; args: openArray[(string, auto)]; es
     result.add nnkCall.newTree(nnkDotExpr.newTree(target, newIdentNode"add"), newLit(if i == 0: '?' else: '&'))
     for c in key: result.add nnkCall.newTree(nnkDotExpr.newTree(target, newIdentNode"add"), c.newLit)
     result.add nnkCall.newTree(nnkDotExpr.newTree(target, newIdentNode"add"), newLit('='))
-    if quote: result.add nnkCall.newTree(nnkDotExpr.newTree(target, newIdentNode"add"), newLit('"'))
     result.add nnkCall.newTree(nnkDotExpr.newTree(target,
       if item[1][1].kind in nnkIntLit .. nnkUInt64Lit: newIdentNode"addInt" else:  newIdentNode"add"),
       if escape != nil: nnkCall.newTree(escape, item[1][1]) else: item[1][1])
-    if quote: result.add nnkCall.newTree(nnkDotExpr.newTree(target, newIdentNode"add"), newLit('"'))
 
 
-macro unrollEncodeQuery*(target: var string; args: openArray[(string, SomeInteger)]; escape: typed = nil; quote: static[bool] = false) =
+macro unrollEncodeQuery*(target: var string; args: openArray[(string, SomeInteger)]; escape: typed = nil) =
   doAssert args.len > 0, "Iterable must not be empty, because theres nothing to unroll"
   result = newStmtList()
   for i, item in args:
@@ -122,9 +120,7 @@ macro unrollEncodeQuery*(target: var string; args: openArray[(string, SomeIntege
     result.add nnkCall.newTree(nnkDotExpr.newTree(target, newIdentNode"add"), newLit(if i == 0: '?' else: '&'))
     for c in key: result.add nnkCall.newTree(nnkDotExpr.newTree(target, newIdentNode"add"), c.newLit)
     result.add nnkCall.newTree(nnkDotExpr.newTree(target, newIdentNode"add"), newLit('='))
-    if quote: result.add nnkCall.newTree(nnkDotExpr.newTree(target, newIdentNode"add"), newLit('"'))
     result.add nnkCall.newTree(nnkDotExpr.newTree(target, newIdentNode"addInt"), if escape != nil: nnkCall.newTree(escape, item[1][1]) else: item[1][1])
-    if quote: result.add nnkCall.newTree(nnkDotExpr.newTree(target, newIdentNode"add"), newLit('"'))
 
 
 macro unrollInternal(target: var string; args: openArray[(string, string)]) =
