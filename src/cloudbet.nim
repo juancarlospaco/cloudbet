@@ -97,7 +97,7 @@ type
 const cloudbetApiURL: string = "https://sports-api.cloudbet.com/pub"  ## Cloudbet API URL.
 
 
-macro unrollEncodeQuery(target: var string; args: openArray[(string, string)]) =
+macro unrollEncodeQuery*(target: var string; args: openArray[(string, auto)]; escape: typed = nil; quote: static[bool] = false) =
   doAssert args.len > 0, "Iterable must not be empty, because theres nothing to unroll"
   result = newStmtList()
   for i, item in args:
@@ -106,7 +106,25 @@ macro unrollEncodeQuery(target: var string; args: openArray[(string, string)]) =
     result.add nnkCall.newTree(nnkDotExpr.newTree(target, newIdentNode"add"), newLit(if i == 0: '?' else: '&'))
     for c in key: result.add nnkCall.newTree(nnkDotExpr.newTree(target, newIdentNode"add"), c.newLit)
     result.add nnkCall.newTree(nnkDotExpr.newTree(target, newIdentNode"add"), newLit('='))
-    result.add nnkCall.newTree(nnkDotExpr.newTree(target, newIdentNode"add"), item[1][1])
+    if quote: result.add nnkCall.newTree(nnkDotExpr.newTree(target, newIdentNode"add"), newLit('"'))
+    result.add nnkCall.newTree(nnkDotExpr.newTree(target,
+      if item[1][1].kind in nnkIntLit .. nnkUInt64Lit: newIdentNode"addInt" else:  newIdentNode"add"),
+      if escape != nil: nnkCall.newTree(escape, item[1][1]) else: item[1][1])
+    if quote: result.add nnkCall.newTree(nnkDotExpr.newTree(target, newIdentNode"add"), newLit('"'))
+
+
+macro unrollEncodeQuery*(target: var string; args: openArray[(string, SomeInteger)]; escape: typed = nil; quote: static[bool] = false) =
+  doAssert args.len > 0, "Iterable must not be empty, because theres nothing to unroll"
+  result = newStmtList()
+  for i, item in args:
+    let key: string = item[1][0].strVal
+    doAssert key.len > 0, "Key must not be empty string."
+    result.add nnkCall.newTree(nnkDotExpr.newTree(target, newIdentNode"add"), newLit(if i == 0: '?' else: '&'))
+    for c in key: result.add nnkCall.newTree(nnkDotExpr.newTree(target, newIdentNode"add"), c.newLit)
+    result.add nnkCall.newTree(nnkDotExpr.newTree(target, newIdentNode"add"), newLit('='))
+    if quote: result.add nnkCall.newTree(nnkDotExpr.newTree(target, newIdentNode"add"), newLit('"'))
+    result.add nnkCall.newTree(nnkDotExpr.newTree(target, newIdentNode"addInt"), if escape != nil: nnkCall.newTree(escape, item[1][1]) else: item[1][1])
+    if quote: result.add nnkCall.newTree(nnkDotExpr.newTree(target, newIdentNode"add"), newLit('"'))
 
 
 macro unrollInternal(target: var string; args: openArray[(string, string)]) =
@@ -143,7 +161,7 @@ proc getSports*(self: Cloudbet): tuple[metod: HttpMethod, url: Uri, headers: arr
 
 proc getSport*(self: Cloudbet; sport: CloudbetSport): tuple[metod: HttpMethod, url: Uri, headers: array[3, (string, string)], body: string] =
   ## Get 1 Event, shows all available main markets by default.
-  result = (metod: HttpGet, url: parseUri(static(cloudbetApiURL & "/v2/odds/sports/") & $sport), headers: self.defaultHeaders(), body: "")
+  result = (metod: HttpGet, url: parseUri(static(cloudbetApiURL & "/v2/odds/sports/") & encodeUrl($sport)), headers: self.defaultHeaders(), body: "")
 
 
 proc getCompetition*(self: Cloudbet; competition: string; fromTo: Slice[int]; markets: seq[string]; limit = 50.Positive): tuple[metod: HttpMethod, url: Uri, headers: array[3, (string, string)], body: string] =
@@ -152,7 +170,7 @@ proc getCompetition*(self: Cloudbet; competition: string; fromTo: Slice[int]; ma
   assert competition.len > 1, "Competition key must not be empty string."
   var url = static(cloudbetApiURL & "/v2/odds/competitions/")
   url.add competition
-  unrollEncodeQuery(url, {"limit": $limit, "from": $(fromTo.a), "to": $(fromTo.b)})
+  unrollEncodeQuery(url, {"limit": limit.int, "from": fromTo.a, "to": fromTo.b})
   for market in markets:
     url.add "&market="
     url.add market
@@ -165,7 +183,7 @@ proc getCompetition*(self: Cloudbet; competition: string; fromTo: Slice[int]; li
   assert competition.len > 1, "Competition key must not be empty string."
   var url = static(cloudbetApiURL & "/v2/odds/competitions/")
   url.add competition
-  unrollEncodeQuery(url, {"limit": $limit, "from": $(fromTo.a), "to": $(fromTo.b)})
+  unrollEncodeQuery(url, {"limit": limit.int, "from": fromTo.a, "to": fromTo.b})
   result = (metod: HttpGet, url: parseUri(url), headers: self.defaultHeaders(), body: "")
 
 
@@ -173,9 +191,9 @@ proc getCompetition*(self: Cloudbet; competition: string; limit = 50.Positive): 
   ## Get list of all live and upcoming events of the given competititon key.
   assert competition.len > 1, "Competition key must not be empty string."
   assert competition.len > 1, "Competition key must not be empty string."
-  var url = static(cloudbetApiURL & "/v2/odds/competitions/")
+  var url: string = static(cloudbetApiURL & "/v2/odds/competitions/")
   url.add competition
-  unrollEncodeQuery(url, {"limit": $limit})
+  unrollEncodeQuery(url, {"limit": limit.int})
   result = (metod: HttpGet, url: parseUri(url), headers: self.defaultHeaders(), body: "")
 
 
@@ -183,7 +201,7 @@ proc getFixtures*(self: Cloudbet; sport: CloudbetSport; year: 2000..int.high, mo
   ## Get fixtures (i.e. sporting events without markets or metadata) for a given sport on a given date.
   ## Shows live and upcoming fixtures of a given sport for a given date. Note that a "day" counts as 00:00 UTC to 23:59 UTC on the requested date.
   var url = static(cloudbetApiURL & "/v2/odds/fixtures")
-  unrollEncodeQuery(url, {"sport": $sport, "limit": $limit})
+  unrollEncodeQuery(url, {"sport": $sport, "limit": $limit}, escape=encodeUrl)
   url.add "&date="
   url.addInt year
   url.add '-'
@@ -219,7 +237,7 @@ proc postLine*(self: Cloudbet): tuple[metod: HttpMethod, url: Uri, headers: arra
 proc getBetHistory*(self: Cloudbet; limit: 1..20 = 20; offset = 0.Natural): tuple[metod: HttpMethod, url: Uri, headers: array[3, (string, string)], body: string] =
   ## Get accepted bet history request with pagination.
   var url = static(cloudbetApiURL & "/v3/bets/history")
-  unrollEncodeQuery(url, {"limit": $limit, "offset": $offset})
+  unrollEncodeQuery(url, {"limit": limit.int, "offset": offset.int})
   result = (metod: HttpGet, url: parseUri(url), headers: self.defaultHeaders(), body: "")
 
 
