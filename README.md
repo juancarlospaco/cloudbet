@@ -68,3 +68,4 @@ From Cloudbet API Docs:
 :star: [@novocaine1926](https://github.com/novocaine1926 '2022-06-13')	
 :star: [@DaGrizzly1](https://github.com/DaGrizzly1 '2022-07-14')	
 :star: [@jpaslay](https://github.com/jpaslay '2023-03-27')	
+:star: [@teroz](https://github.com/teroz '2023-05-03')	
