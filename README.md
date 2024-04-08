@@ -71,3 +71,4 @@ From Cloudbet API Docs:
 :star: [@teroz](https://github.com/teroz '2023-05-03')	
 :star: [@mackbdev](https://github.com/mackbdev '2023-09-29')	
 :star: [@oguzakd](https://github.com/oguzakd '2024-03-16')	
+:star: [@MrDeeleon](https://github.com/MrDeeleon '2024-04-08')	
