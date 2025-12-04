@@ -76,3 +76,4 @@ From Cloudbet API Docs:
 :star: [@prorab2011](https://github.com/prorab2011 '2024-09-30')	
 :star: [@kacoom](https://github.com/kacoom '2024-11-01')	
 :star: [@ZeVK1](https://github.com/ZeVK1 '2024-11-23')	
+:star: [@fernando-aristizabal](https://github.com/fernando-aristizabal '2025-12-04')	
